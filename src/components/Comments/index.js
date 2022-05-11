@@ -17,7 +17,11 @@ const initialContainerBackgroundClassNames = [
 ]
 
 class Comments extends Component {
-  state = {nameInput: '', commentInput: '', commentsList: []}
+  state = {
+    nameInput: '',
+    commentInput: '',
+    commentsList: [],
+  }
 
   onChangeNameInput = event => {
     this.setState({nameInput: event.target.value})
@@ -55,8 +59,28 @@ class Comments extends Component {
     }))
   }
 
-  render() {
+  toggleLikeBtn = id => {
+    this.setState(prevState => ({
+      commentsList: prevState.commentsList.map(eachComment => {
+        if (id === eachComment.id) {
+          return {...eachComment, isLiked: !eachComment.isLiked}
+        }
+        return eachComment
+      }),
+    }))
+  }
+
+  onDeleteComment = commentId => {
     const {commentsList} = this.state
+
+    this.setState({
+      commentsList: commentsList.filter(comment => comment.id !== commentId),
+    })
+    console.log(commentsList)
+  }
+
+  render() {
+    const {commentsList, nameInput, commentInput} = this.state
     return (
       <div className="comments-app">
         <h1 className="heading">COMMENTS</h1>
@@ -65,25 +89,25 @@ class Comments extends Component {
             className="upper-content-container"
             onSubmit={this.onAddComment}
           >
-            <div className="inputs-container">
-              <p className="caption">Say something about 4.0 Technologies</p>
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="input-name-style"
-                onChange={this.onChangeNameInput}
-              />
-              <textarea
-                type="text"
-                rows="6"
-                placeholder="Your Comment"
-                className="text-box-style"
-                onChange={this.onChangeCommentInput}
-              />
-              <button type="button" className="btn-submit">
-                Add Comment
-              </button>
-            </div>
+            <p className="caption">Say something about 4.0 Technologies</p>
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="input-name-style"
+              value={nameInput}
+              onChange={this.onChangeNameInput}
+            />
+            <textarea
+              type="text"
+              rows="6"
+              placeholder="Your Comment"
+              value={commentInput}
+              className="text-box-style"
+              onChange={this.onChangeCommentInput}
+            />
+            <button type="submit" className="btn-submit">
+              Add Comment
+            </button>
           </form>
           <div className="image-container">
             <img
@@ -100,7 +124,12 @@ class Comments extends Component {
         </div>
         <ul className="comments-container">
           {commentsList.map(eachComment => (
-            <CommentItem commentDetails={eachComment} key={eachComment.id} />
+            <CommentItem
+              commentDetails={eachComment}
+              key={eachComment.id}
+              toggleLikeBtn={this.toggleLikeBtn}
+              onDeleteComment={this.onDeleteComment}
+            />
           ))}
         </ul>
       </div>

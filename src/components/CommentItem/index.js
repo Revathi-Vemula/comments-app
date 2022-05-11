@@ -3,35 +3,42 @@ import {formatDistanceToNow} from 'date-fns'
 import './index.css'
 
 const CommentItem = props => {
-  const {commentDetails} = props
+  const {commentDetails, toggleLikeBtn} = props
   const {
     id,
-    nameInput,
-    commentInput,
+    name,
+    comment,
     date,
     isLiked,
     initialClassName,
+    onDeleteComment,
   } = commentDetails
+
+  const onClickLike = () => {
+    toggleLikeBtn(id)
+  }
+
+  const deleteComment = () => {
+    onDeleteComment(id)
+  }
+
+  const likeImage = isLiked
+    ? 'https://assets.ccbp.in/frontend/react-js/comments-app/liked-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png'
 
   return (
     <li className="each-comment-container">
       <div className="commenter-details">
-        <p className={initialClassName}>
-          {nameInput.slice(0, 1).toUpperCase()}
-        </p>
-        <p className="commenter-name">{nameInput}</p>
+        <p className={initialClassName}>{name.slice(0, 1).toUpperCase()}</p>
+        <p className="commenter-name">{name}</p>
         <p className="time">{formatDistanceToNow(date)}</p>
       </div>
-      <p className="comment-content">{commentInput}</p>
+      <p className="comment-content">{comment}</p>
       <div className="buttons-container">
-        <button type="button" className="btn-like">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/comments-app/like-img.png"
-            className="like-image"
-            alt="like"
-          />
+        <button type="button" className="btn-like" onClick={onClickLike}>
+          <img src={likeImage} className="like-image" alt="like" />
         </button>
-        <button type="button" className="btn-delete">
+        <button type="button" className="btn-delete" onClick={deleteComment}>
           <img
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
             className="delete-img"
@@ -39,7 +46,7 @@ const CommentItem = props => {
           />
         </button>
       </div>
-      <hr />
+      <hr className="horizontal-separator" />
     </li>
   )
 }

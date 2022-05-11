@@ -31,56 +31,76 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .initial-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: Center;
+  align-items: center;
   border-radius: 100%;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  padding-bottom: 3px;
   margin-top: 15px;
   margin-right: 10px;
+  margin-bottom: 0;
+  color: #ffffff;
+  font-size: 20px;
 }
 
 .commenter-details {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-bottom: 0;
+  height: 60px;
 }
 
 .commenter-name {
   font-family: 'Consolas';
-  font-size: 20px;
+  font-size: 27px;
+  margin-right: 10px;
+  font-weight: 800;
+  margin-top: 13px;
 }
 
 .time {
-  font-size: 10px;
+  font-size: 15px;
+  margin-top: 20px;
   color: #64748b;
   font-family: 'Consolas';
+  font-weight: 700;
 }
 
 .comment-content {
   font-family: 'Consolas';
-  font-size: 15px;
+  font-size: 22px;
   color: #475569;
+  margin-top: 0;
+  margin-bottom: 8px;
+  margin-left: 55px;
+  text-align: left;
 }
 
 .btn-like {
   border-style: none;
   background-color: transparent;
-  width: 25px;
+  width: 15px;
   cursor: pointer;
   outline: none;
   margin-left: 10px;
 }
 
 .like-image {
-  height: 15px;
-  width: 15px;
+  height: 25px;
+  width: 25px;
+}
+
+.delete-img {
+  height: 25px;
+  width: 25px;
 }
 
 .btn-delete {
@@ -96,4 +116,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.horizontal-separator {
+  border: solid 1px #7e858e;
+  width: 100%;
 }
