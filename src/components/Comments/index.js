@@ -76,11 +76,11 @@ class Comments extends Component {
     this.setState({
       commentsList: commentsList.filter(comment => comment.id !== commentId),
     })
-    console.log(commentsList)
   }
 
   render() {
     const {commentsList, nameInput, commentInput} = this.state
+
     return (
       <div className="comments-app">
         <h1 className="heading">COMMENTS</h1>

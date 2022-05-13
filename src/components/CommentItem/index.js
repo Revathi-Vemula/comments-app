@@ -19,6 +19,7 @@ const CommentItem = props => {
   }
 
   const deleteComment = () => {
+    console.log(commentDetails)
     onDeleteComment(id)
   }
 
