@@ -3,16 +3,8 @@ import {formatDistanceToNow} from 'date-fns'
 import './index.css'
 
 const CommentItem = props => {
-  const {commentDetails, toggleLikeBtn} = props
-  const {
-    id,
-    name,
-    comment,
-    date,
-    isLiked,
-    initialClassName,
-    onDeleteComment,
-  } = commentDetails
+  const {commentDetails, toggleLikeBtn, onDeleteComment} = props
+  const {id, name, comment, date, isLiked, initialClassName} = commentDetails
 
   const onClickLike = () => {
     toggleLikeBtn(id)
@@ -39,7 +31,12 @@ const CommentItem = props => {
         <button type="button" className="btn-like" onClick={onClickLike}>
           <img src={likeImage} className="like-image" alt="like" />
         </button>
-        <button type="button" className="btn-delete" onClick={deleteComment}>
+        <button
+          type="button"
+          className="btn-delete"
+          onClick={deleteComment}
+          testid="delete"
+        >
           <img
             src="https://assets.ccbp.in/frontend/react-js/comments-app/delete-img.png"
             className="delete-img"
